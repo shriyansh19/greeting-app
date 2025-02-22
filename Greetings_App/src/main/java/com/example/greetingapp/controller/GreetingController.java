@@ -11,14 +11,10 @@ public class GreetingController {
     @Autowired
     private GreetingService greetingService;
 
-    @GetMapping
-    public String getGreeting() {
-        return "{\"message\": \"" + greetingService.getGreetingMessage() + "\"}";
-    }
-
     @GetMapping("")
-    public String greet() {
-        return "Hello World!";
+    public String greet(@RequestParam(required = false) String firstName,
+                        @RequestParam(required = false) String lastName) {
+        return greetingService.getGreeting(firstName, lastName);
     }
 
     @PostMapping("")
