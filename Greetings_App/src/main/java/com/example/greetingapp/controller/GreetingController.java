@@ -1,7 +1,9 @@
 package com.example.greetingapp.controller;
 
+import com.example.greetingapp.entity.Greeting;
 import com.example.greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,6 +32,12 @@ public class GreetingController {
     @DeleteMapping("")
     public String greetDelete() {
         return "Hello World via DELETE!";
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Greeting> saveGreeting(@RequestBody String message) {
+        Greeting savedGreeting = greetingService.saveGreeting(message);
+        return ResponseEntity.ok(savedGreeting);
     }
 
 
