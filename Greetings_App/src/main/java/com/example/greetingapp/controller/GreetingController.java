@@ -40,5 +40,14 @@ public class GreetingController {
         return ResponseEntity.ok(savedGreeting);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) {
+        Greeting greeting = greetingService.findGreetingById(id);
+        if (greeting != null) {
+            return ResponseEntity.ok(greeting);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
