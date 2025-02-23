@@ -58,4 +58,14 @@ public class GreetingController {
         return ResponseEntity.ok(greetings);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Greeting> updateGreeting(@PathVariable Long id, @RequestBody String message) {
+        Greeting updatedGreeting = greetingService.updateGreeting(id, message);
+        if (updatedGreeting != null) {
+            return ResponseEntity.ok(updatedGreeting);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
